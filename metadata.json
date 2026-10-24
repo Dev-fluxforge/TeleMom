@@ -1,0 +1,6 @@
+{
+  "name": "Telemama - Continuous Maternal & Newborn Monitoring",
+  "description": "Africa-first maternal and newborn emergency alert and continuous monitoring system for Nigeria, bridging smartphones and basic feature phones via USSD.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

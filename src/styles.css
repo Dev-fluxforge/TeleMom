@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --cream-bg: #F7F1E9;
+    --cream-card: #FFFFFF;
+    --cream-subtle: #EFE8DD;
+    --terracotta: #C2410C;
+    --terracotta-dark: #9A3412;
+    --terracotta-light: #FFEDD5;
+    --forest-green: #15803D;
+    --forest-light: #DCFCE7;
+    --charcoal: #18181B;
+    --charcoal-muted: #52525B;
+  }
+
+  body {
+    background-color: var(--cream-bg);
+    color: var(--charcoal);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Material Icons vertical alignment & sizing */
+.mat-icon {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  vertical-align: middle;
+  user-select: none;
+}
+
+/* Ensure minimum touch target for mobile */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* USSD vintage Nokia / itel LCD screen font & styling */
+.font-ussd {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F1E9;
+}
+::-webkit-scrollbar-thumb {
+  background: #D6CEBE;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C2410C;
+}
