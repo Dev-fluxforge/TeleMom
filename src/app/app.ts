@@ -150,14 +150,15 @@ export class App {
       next: (response) => {
         this.isTriggeringCheckup.set(false);
         const sessionObj = response.session as { id?: number; status?: string } | undefined;
+        const isSmsFailed = response.sms?.success === false;
         this.demoAlert.set({
-          type: 'success',
-          message: response.message || 'Daily checkup dispatched (20s escalation timer started).',
+          type: isSmsFailed ? 'error' : 'success',
+          message: response.warning || response.message || 'Daily checkup dispatched (20s escalation timer started).',
           details: {
             sessionId: sessionObj?.id,
             sessionStatus: sessionObj?.status,
             timeoutSeconds: response.timeoutSeconds ?? 20,
-            smsSimulated: response.sms?.simulated ?? true
+            smsSimulated: false
           },
           timestamp: new Date().toLocaleTimeString()
         });
@@ -192,12 +193,13 @@ export class App {
     this.telemamaApi.triggerWeek36Alert(phone).subscribe({
       next: (response) => {
         this.isTriggeringWeek36.set(false);
+        const isFailed = response.success === false || response.sms?.success === false;
         this.demoAlert.set({
-          type: 'success',
-          message: response.message || 'Week-36 companion alert sent.',
+          type: isFailed ? 'error' : 'success',
+          message: response.error || response.message || 'Week-36 companion alert sent.',
           details: {
             recipient: response.recipient,
-            smsSimulated: response.sms?.simulated ?? true
+            smsSimulated: false
           },
           timestamp: new Date().toLocaleTimeString()
         });

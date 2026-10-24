@@ -39,6 +39,9 @@
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "fonts": false
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -51,10 +54,7 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all",
-              "optimization": {
-                "fonts": false
-              }
+              "outputHashing": "all"
             },
             "development": {
               "optimization": false,

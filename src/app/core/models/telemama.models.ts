@@ -17,6 +17,7 @@ export interface PatientResponse extends PatientPayload {
 export interface ApiResponse<T = unknown> {
   success: boolean;
   message?: string;
+  warning?: string;
   action?: 'created' | 'updated';
   data?: T;
   session?: {
@@ -31,7 +32,8 @@ export interface ApiResponse<T = unknown> {
   recipient?: string;
   timeoutSeconds?: number;
   sms?: {
-    success: boolean;
+    success?: boolean;
+    error?: string;
     simulated?: boolean;
     sid?: string;
   };
