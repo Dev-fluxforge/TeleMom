@@ -323,6 +323,158 @@
       </section>
 
     </div>
+
+    <!-- ========================================== -->
+    <!-- 3. How Telemama Works Architecture         -->
+    <!-- ========================================== -->
+    <section class="mt-8 bg-white rounded-2xl border border-stone-200 p-6 sm:p-7 shadow-xs">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-stone-100 gap-3">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#C2410C]">Architecture Overview</span>
+          </div>
+          <h2 class="text-base sm:text-lg font-bold text-stone-900">How Telemama Works</h2>
+          <p class="text-xs text-stone-500 mt-0.5">
+            Offline-first maternal health triage and autonomous escalation protocol engineered for low-resource environments.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 self-start sm:self-auto">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 border border-stone-200 text-[11px] font-semibold">
+            <mat-icon class="!text-[14px] !w-[14px] !h-[14px] text-stone-500">sms</mat-icon>
+            <span>Offline-First SMS</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-semibold">
+            <mat-icon class="!text-[14px] !w-[14px] !h-[14px] text-emerald-600">bolt</mat-icon>
+            <span>Zero-Data GSM</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- 4 Pillars Grid -->
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Pillar 1: Simple Antenatal Registration -->
+        <div class="rounded-xl border border-stone-200 bg-stone-50/50 p-4 sm:p-5 flex flex-col justify-between hover:border-stone-300 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-8 h-8 rounded-lg bg-stone-200/80 text-stone-800 flex items-center justify-center">
+                <mat-icon class="!text-[18px] !w-[18px] !h-[18px]">how_to_reg</mat-icon>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Pillar 01</span>
+            </div>
+            <h3 class="text-xs font-bold text-stone-900 mb-1.5">Simple Antenatal Registration</h3>
+            <p class="text-xs text-stone-600 leading-relaxed mb-3">
+              Captures mother's details, home landmark, pre-filled antenatal ward phone, physical Birth Companion, and family contacts.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-200/60 space-y-1.5 text-[11px] text-stone-500">
+            <div class="flex items-start gap-1.5">
+              <mat-icon class="shrink-0 mt-0.5 !text-[13px] !w-[13px] !h-[13px] text-emerald-600">check</mat-icon>
+              <span>GPS-free landmark dispatch</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <mat-icon class="shrink-0 mt-0.5 !text-[13px] !w-[13px] !h-[13px] text-emerald-600">check</mat-icon>
+              <span>3-contact safety net in DB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Daily Checkup & 3 Triage Paths -->
+        <div class="rounded-xl border border-stone-200 bg-stone-50/50 p-4 sm:p-5 flex flex-col justify-between hover:border-stone-300 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-8 h-8 rounded-lg bg-stone-200/80 text-stone-800 flex items-center justify-center">
+                <mat-icon class="!text-[18px] !w-[18px] !h-[18px]">call_split</mat-icon>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Pillar 02</span>
+            </div>
+            <h3 class="text-xs font-bold text-stone-900 mb-1.5">Daily Checkup & 3 Triage Paths</h3>
+            <p class="text-xs text-stone-600 leading-relaxed mb-3">
+              Daily SMS triage split into Path A (Safe/0), Path B (Moderate/3-4 alerting only the ward), and Path C (Immediate Emergency/1-2 or Beep alerting Ward, Companion, and Family).
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-200/60 space-y-1.5 text-[11px] text-stone-500">
+            <div class="flex items-start gap-1.5">
+              <span class="font-mono font-semibold text-emerald-700">Path A:</span>
+              <span>Safe (0) &rarr; Reassurance</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="font-mono font-semibold text-amber-700">Path B:</span>
+              <span>Headache/Fever (3-4) &rarr; Ward</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="font-mono font-semibold text-rose-700">Path C:</span>
+              <span>Bleeding/Pain (1-2) &rarr; 3-Way</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 3: The 3-Stage Silence Ladder -->
+        <div class="rounded-xl border border-stone-200 bg-stone-50/50 p-4 sm:p-5 flex flex-col justify-between hover:border-stone-300 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-8 h-8 rounded-lg bg-stone-200/80 text-stone-800 flex items-center justify-center">
+                <mat-icon class="!text-[18px] !w-[18px] !h-[18px]">alarm</mat-icon>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Pillar 03</span>
+            </div>
+            <h3 class="text-xs font-bold text-stone-900 mb-1.5">The 3-Stage Silence Ladder</h3>
+            <p class="text-xs text-stone-600 leading-relaxed mb-3">
+              Autonomous escalation when checkups are ignored (Stage 1 reminder SMS, Stage 2 ward alert, Stage 3 full emergency broadcast).
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-200/60 space-y-1.5 text-[11px] text-stone-500">
+            <div class="flex items-start gap-1.5">
+              <span class="font-mono font-semibold text-stone-700">Stage 1:</span>
+              <span>Follow-up reminder to mother</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="font-mono font-semibold text-stone-700">Stage 2:</span>
+              <span>Alert to ward phone to call</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="font-mono font-semibold text-rose-700">Stage 3:</span>
+              <span>Full emergency broadcast</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 4: Week-36 Birth Companion Ready-Alert -->
+        <div class="rounded-xl border border-stone-200 bg-stone-50/50 p-4 sm:p-5 flex flex-col justify-between hover:border-stone-300 transition-colors">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-8 h-8 rounded-lg bg-stone-200/80 text-stone-800 flex items-center justify-center">
+                <mat-icon class="!text-[18px] !w-[18px] !h-[18px]">family_restroom</mat-icon>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Pillar 04</span>
+            </div>
+            <h3 class="text-xs font-bold text-stone-900 mb-1.5">Week-36 Birth Companion Ready-Alert</h3>
+            <p class="text-xs text-stone-600 leading-relaxed mb-3">
+              Automated guidance and readiness alerts sent when entering final weeks.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-200/60 space-y-1.5 text-[11px] text-stone-500">
+            <div class="flex items-start gap-1.5">
+              <mat-icon class="shrink-0 mt-0.5 !text-[13px] !w-[13px] !h-[13px] text-emerald-600">check</mat-icon>
+              <span>Automated SMS at week 36</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <mat-icon class="shrink-0 mt-0.5 !text-[13px] !w-[13px] !h-[13px] text-emerald-600">check</mat-icon>
+              <span>Pre-labor vigilance guidance</span>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <mat-icon class="shrink-0 mt-0.5 !text-[13px] !w-[13px] !h-[13px] text-emerald-600">check</mat-icon>
+              <span>Prepares physical companion</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
   </main>
 
   <!-- Clean Minimal Footer -->
