@@ -56,13 +56,13 @@ import { DANGER_SIGNS } from '../../core/utils/triage';
         </div>
 
         <!-- Quick Switch Mother Profile (For live testing) -->
-        <div class="w-full sm:w-auto flex items-center gap-2">
+        <div class="w-full sm:w-auto flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2">
           <label for="mother-select" class="text-xs text-stone-600 font-medium whitespace-nowrap">Switch Mother:</label>
           <select
             id="mother-select"
             [value]="currentMother().id"
             (change)="onMotherChange($event)"
-            class="touch-target text-xs bg-stone-50 border border-stone-300 rounded-xl px-3 py-2 font-medium text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#C2410C]"
+            class="touch-target w-full sm:w-auto text-xs bg-stone-50 border border-stone-300 rounded-xl px-3 py-2.5 font-medium text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#C2410C]"
           >
             @for (mom of state.mothers(); track mom.id) {
               <option [value]="mom.id">
@@ -405,6 +405,30 @@ import { DANGER_SIGNS } from '../../core/utils/triage';
         </div>
 
       </div>
+
+      <!-- Mobile Floating Quick-Submit Bar (Pattern Layout C from 10_mobile_touch_apps.md) -->
+      @if (selectedSymptomIds().length > 0) {
+        <div class="sm:hidden fixed bottom-16 left-0 right-0 z-30 p-3 bg-white/95 backdrop-blur-md border-t border-red-200 shadow-xl animate-slide-up">
+          <div class="flex items-center justify-between gap-3">
+            <div class="text-xs">
+              <span class="font-bold text-red-700 flex items-center gap-1">
+                <mat-icon class="!text-[14px] !w-[14px] !h-[14px]">warning</mat-icon>
+                {{ selectedSymptomIds().length }} Danger Sign(s)
+              </span>
+              <span class="text-[10px] text-stone-500">Triage will alert PHC</span>
+            </div>
+
+            <button
+              type="button"
+              (click)="submitCheckIn()"
+              class="touch-target px-5 py-2.5 bg-[#C2410C] hover:bg-[#9A3412] text-white rounded-xl font-bold text-xs shadow-md flex items-center gap-1.5 shrink-0"
+            >
+              <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">send</mat-icon>
+              <span>Submit Triage Now</span>
+            </button>
+          </div>
+        </div>
+      }
 
       <!-- Quick Audio Health Tips & Knowledge Hub -->
       <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm space-y-4">

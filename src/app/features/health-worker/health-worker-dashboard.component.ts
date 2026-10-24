@@ -266,8 +266,72 @@ import { MaternalStateService } from '../../core/services/maternal-state.service
           </div>
         </div>
 
-        <!-- Table -->
-        <div class="overflow-x-auto">
+        <!-- Mobile Card List for Health Workers (Phones & Small Devices) -->
+        <div class="space-y-3 md:hidden">
+          @for (mom of filteredMothers(); track mom.id) {
+            <div class="p-4 rounded-xl border border-stone-200 bg-stone-50/80 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  @if (mom.riskLevel === 'red') {
+                    <span class="inline-flex items-center gap-1 font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded text-[10px]">
+                      <mat-icon class="!text-[12px] !w-[12px] !h-[12px]">warning</mat-icon>
+                      RED ALERT
+                    </span>
+                  } @else if (mom.riskLevel === 'amber') {
+                    <span class="inline-flex items-center gap-1 font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded text-[10px]">
+                      <mat-icon class="!text-[12px] !w-[12px] !h-[12px]">info</mat-icon>
+                      AMBER
+                    </span>
+                  } @else {
+                    <span class="inline-flex items-center gap-1 font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded text-[10px]">
+                      <mat-icon class="!text-[12px] !w-[12px] !h-[12px]">check</mat-icon>
+                      SAFE
+                    </span>
+                  }
+                </div>
+                <span class="text-[11px] text-stone-500 font-mono">{{ mom.lastCheckInDate || 'Enrolled' }}</span>
+              </div>
+
+              <div>
+                <h4 class="text-sm font-bold text-stone-900">{{ mom.fullName }}</h4>
+                <div class="text-xs text-stone-600 font-mono mt-0.5">{{ mom.phoneNumber }}</div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 text-[11px] text-stone-600 pt-1 border-t border-stone-200/60">
+                <div>
+                  <span class="font-semibold text-stone-800 block">Stage:</span>
+                  @if (mom.isPostpartum) {
+                    <span class="text-blue-800 font-medium">Postpartum D{{ mom.postpartumDays }}</span>
+                  } @else {
+                    <span>Pregnant Wk {{ mom.gestationalWeeks }}</span>
+                  }
+                </div>
+                <div>
+                  <span class="font-semibold text-stone-800 block">Location:</span>
+                  <span class="truncate block">{{ mom.lga }}</span>
+                </div>
+              </div>
+
+              <div class="text-[11px] text-stone-600">
+                <span class="font-semibold text-stone-800">Support:</span> {{ mom.nominatedSupportPerson.name }} ({{ mom.nominatedSupportPerson.relationship }})
+              </div>
+
+              <div class="pt-1">
+                <button
+                  type="button"
+                  (click)="viewMother(mom.id)"
+                  class="touch-target w-full py-2 bg-white hover:bg-stone-100 text-[#C2410C] border border-stone-300 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm"
+                >
+                  <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">folder_open</mat-icon>
+                  <span>Open Mother Case</span>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Desktop Table (Hidden on small mobile screens) -->
+        <div class="hidden md:block overflow-x-auto">
           <table class="w-full text-left text-xs">
             <thead class="bg-stone-50 text-stone-600 font-semibold border-b border-stone-200">
               <tr>

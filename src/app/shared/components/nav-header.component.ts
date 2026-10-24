@@ -80,15 +80,6 @@ import { PitchGuideModal } from './pitch-guide-modal.component';
           </button>
         </div>
       </div>
-
-      <!-- Mobile Navigation Secondary Strip (Horizontal single-row for small screens) -->
-      <div class="md:hidden flex items-center justify-between px-3 py-2 border-t border-[#E8DEC8] bg-[#F3ECE1] text-xs font-medium overflow-x-auto gap-4">
-        <a routerLink="/" routerLinkActive="text-[#C2410C] font-bold" [routerLinkActiveOptions]="{ exact: true }" class="whitespace-nowrap px-2 py-1">Home</a>
-        <a routerLink="/mother" routerLinkActive="text-[#C2410C] font-bold" class="whitespace-nowrap px-2 py-1">Mother</a>
-        <a routerLink="/family" routerLinkActive="text-[#C2410C] font-bold" class="whitespace-nowrap px-2 py-1">Family</a>
-        <a routerLink="/health-worker" routerLinkActive="text-[#C2410C] font-bold" class="whitespace-nowrap px-2 py-1">PHC Clinic</a>
-        <a routerLink="/ussd" routerLinkActive="text-[#C2410C] font-bold" class="whitespace-nowrap px-2 py-1 font-mono">*384*26#</a>
-      </div>
     </header>
 
     @if (showPitchGuide()) {

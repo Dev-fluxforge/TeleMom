@@ -44,7 +44,7 @@ type UssdStep =
         <button
           type="button"
           (click)="dialCode('*384*26#')"
-          class="touch-target px-4 py-2 bg-stone-900 hover:bg-black text-amber-400 font-mono font-bold text-xs rounded-xl flex items-center gap-2 transition-all shadow-sm"
+          class="touch-target w-full sm:w-auto px-4 py-2.5 bg-stone-900 hover:bg-black text-amber-400 font-mono font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
         >
           <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">call</mat-icon>
           <span>Auto-Dial *384*26#</span>
@@ -55,8 +55,8 @@ type UssdStep =
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- FEATURE PHONE CHASSIS (Cols 1-5) -->
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="w-[310px] sm:w-[330px] bg-stone-900 rounded-[44px] p-5 shadow-2xl border-4 border-stone-800 space-y-4 relative select-none">
+        <div class="lg:col-span-5 flex justify-center w-full">
+          <div class="w-full max-w-[310px] sm:max-w-[330px] bg-stone-900 rounded-[38px] sm:rounded-[44px] p-4 sm:p-5 shadow-2xl border-4 border-stone-800 space-y-4 relative select-none">
             
             <!-- Ear Speaker Grill -->
             <div class="w-16 h-2 bg-stone-800 rounded-full mx-auto"></div>

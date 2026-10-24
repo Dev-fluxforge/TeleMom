@@ -30,10 +30,10 @@ import { MaternalStateService } from '../../core/services/maternal-state.service
             </p>
 
             <!-- Quick Action CTA Group -->
-            <div class="flex flex-wrap items-center gap-4 pt-2">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
               <a
                 routerLink="/mother"
-                class="touch-target px-6 py-3.5 bg-[#C2410C] hover:bg-[#9A3412] active:scale-[0.98] text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center gap-2"
+                class="touch-target w-full sm:w-auto px-6 py-3.5 bg-[#C2410C] hover:bg-[#9A3412] active:scale-[0.98] text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
               >
                 <mat-icon class="!text-[20px] !w-[20px] !h-[20px]">pregnant_woman</mat-icon>
                 <span>Enter as Mother</span>
@@ -41,7 +41,7 @@ import { MaternalStateService } from '../../core/services/maternal-state.service
 
               <a
                 routerLink="/health-worker"
-                class="touch-target px-6 py-3.5 bg-stone-900 hover:bg-stone-800 active:scale-[0.98] text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center gap-2"
+                class="touch-target w-full sm:w-auto px-6 py-3.5 bg-stone-900 hover:bg-stone-800 active:scale-[0.98] text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
               >
                 <mat-icon class="!text-[20px] !w-[20px] !h-[20px]">medical_services</mat-icon>
                 <span>Health Facility Dashboard</span>
@@ -49,7 +49,7 @@ import { MaternalStateService } from '../../core/services/maternal-state.service
 
               <a
                 routerLink="/ussd"
-                class="touch-target px-5 py-3.5 border-2 border-stone-800 hover:bg-stone-100 active:scale-[0.98] text-stone-900 rounded-xl font-bold text-sm transition-all flex items-center gap-2 font-mono"
+                class="touch-target w-full sm:w-auto px-5 py-3.5 border-2 border-stone-800 hover:bg-stone-100 active:scale-[0.98] text-stone-900 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 font-mono"
               >
                 <mat-icon class="!text-[20px] !w-[20px] !h-[20px]">phone_android</mat-icon>
                 <span>Dial *384*26#</span>

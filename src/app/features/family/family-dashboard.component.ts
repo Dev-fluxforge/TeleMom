@@ -32,13 +32,13 @@ import { EmergencyAlert } from '../../core/models/maternal.models';
         </div>
 
         <!-- Quick Switch Mother to test different family scenarios -->
-        <div class="w-full sm:w-auto flex items-center gap-2">
+        <div class="w-full sm:w-auto flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2">
           <label for="family-mom-select" class="text-xs text-stone-600 font-medium whitespace-nowrap">Mother:</label>
           <select
             id="family-mom-select"
             [value]="currentMother().id"
             (change)="onMotherChange($event)"
-            class="touch-target text-xs bg-stone-50 border border-stone-300 rounded-xl px-3 py-2 font-medium text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#C2410C]"
+            class="touch-target w-full sm:w-auto text-xs bg-stone-50 border border-stone-300 rounded-xl px-3 py-2.5 font-medium text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#C2410C]"
           >
             @for (mom of state.mothers(); track mom.id) {
               <option [value]="mom.id">
@@ -173,11 +173,11 @@ import { EmergencyAlert } from '../../core/models/maternal.models';
               <p class="text-xs text-stone-300">
                 Need urgent community transport? Dispatch a certified maternal tricycle ambulance or Okada escort directly to {{ currentMother().wardOrCommunity }}.
               </p>
-              <div class="flex flex-wrap gap-2 pt-1">
+              <div class="flex flex-col sm:flex-row gap-2 pt-1">
                 <button
                   type="button"
                   (click)="requestTransport(alert.id, 'tricycle_ambulance')"
-                  class="touch-target px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors"
+                  class="touch-target w-full sm:w-auto px-4 py-2.5 bg-amber-500 hover:bg-amber-400 text-stone-950 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">electric_rickshaw</mat-icon>
                   <span>Dispatch Tricycle Ambulance (Keke)</span>
@@ -185,7 +185,7 @@ import { EmergencyAlert } from '../../core/models/maternal.models';
                 <button
                   type="button"
                   (click)="requestTransport(alert.id, 'okada_rapid')"
-                  class="touch-target px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                  class="touch-target w-full sm:w-auto px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">two_wheeler</mat-icon>
                   <span>Dispatch Okada Rapid Escort</span>
