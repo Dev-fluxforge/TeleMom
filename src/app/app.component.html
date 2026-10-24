@@ -2,7 +2,7 @@
   
   <!-- Header -->
   <header class="bg-white/80 backdrop-blur border-b border-stone-200 sticky top-0 z-20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
       <div class="flex items-center gap-2.5">
         <div class="w-8 h-8 rounded-lg bg-[#C2410C] text-white flex items-center justify-center">
           <mat-icon class="!text-[18px] !w-[18px] !h-[18px]">favorite</mat-icon>
@@ -17,320 +17,212 @@
     </div>
   </header>
 
-  <!-- Main View -->
-  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+  <!-- Main View: Patient Registration Form Only -->
+  <main class="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
+    <section class="bg-white rounded-2xl border border-stone-200 p-6 sm:p-8 shadow-xs">
       
-      <!-- ========================================== -->
-      <!-- 1. Patient Registration Form               -->
-      <!-- ========================================== -->
-      <section class="lg:col-span-7 bg-white rounded-2xl border border-stone-200 p-6 sm:p-7 shadow-xs">
-        
-        <div class="flex items-center justify-between pb-4 border-b border-stone-100">
-          <h2 class="text-base font-bold text-stone-900">Patient Registration</h2>
-          @if (registrationForm.dirty) {
-            <button
-              type="button"
-              (click)="clearForm()"
-              class="text-xs text-stone-400 hover:text-stone-700 transition-colors"
-            >
-              Clear
-            </button>
-          }
-        </div>
-
-        <!-- Inline Visual Feedback -->
-        @if (registrationAlert(); as alert) {
-          <div
-            class="mt-4 p-3.5 rounded-xl border flex items-start gap-3 transition-all"
-            [class]="alert.type === 'success' ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'"
-          >
-            <mat-icon class="shrink-0 mt-0.5 !text-[18px] !w-[18px] !h-[18px]" [class]="alert.type === 'success' ? 'text-emerald-600' : 'text-rose-600'">
-              {{ alert.type === 'success' ? 'check_circle' : 'error' }}
-            </mat-icon>
-            <div class="flex-1 text-xs leading-normal">
-              <p class="font-semibold">{{ alert.message }}</p>
-            </div>
-            <button
-              type="button"
-              (click)="registrationAlert.set(null)"
-              class="text-stone-400 hover:text-stone-600"
-            >
-              <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">close</mat-icon>
-            </button>
-          </div>
-        }
-
-        <form [formGroup]="registrationForm" (ngSubmit)="onRegisterPatient()" class="mt-5 space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            
-            <!-- Mother's Name -->
-            <div>
-              <label for="name" class="block text-xs font-semibold text-stone-700 mb-1">
-                Mother's Name *
-              </label>
-              <input
-                id="name"
-                type="text"
-                formControlName="name"
-                placeholder="e.g. Amina Bello"
-                class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
-              />
-              @if (registrationForm.get('name')?.touched && registrationForm.get('name')?.invalid) {
-                <span class="text-[11px] text-rose-600 font-medium">Required</span>
-              }
-            </div>
-
-            <!-- Phone Number -->
-            <div>
-              <label for="phone" class="block text-xs font-semibold text-stone-700 mb-1">
-                Phone Number *
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                formControlName="phone"
-                placeholder="e.g. 0803 123 4567"
-                class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
-              />
-              @if (registrationForm.get('phone')?.touched && registrationForm.get('phone')?.invalid) {
-                <span class="text-[11px] text-rose-600 font-medium">Required</span>
-              }
-            </div>
-
-            <!-- Weeks Pregnant -->
-            <div>
-              <label for="weeks_pregnant" class="block text-xs font-semibold text-stone-700 mb-1">
-                Weeks Pregnant *
-              </label>
-              <input
-                id="weeks_pregnant"
-                type="number"
-                min="1"
-                max="42"
-                formControlName="weeks_pregnant"
-                placeholder="e.g. 34"
-                class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
-              />
-              @if (registrationForm.get('weeks_pregnant')?.touched && registrationForm.get('weeks_pregnant')?.invalid) {
-                <span class="text-[11px] text-rose-600 font-medium">1 - 42</span>
-              }
-            </div>
-
-            <!-- Pre-filled Antenatal Ward Phone -->
-            <div>
-              <label for="ward_phone" class="block text-xs font-semibold text-stone-700 mb-1">
-                Antenatal Ward Phone *
-              </label>
-              <input
-                id="ward_phone"
-                type="tel"
-                formControlName="ward_phone"
-                placeholder="e.g. +234 809 111 2222"
-                class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 bg-stone-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
-              />
-              @if (registrationForm.get('ward_phone')?.touched && registrationForm.get('ward_phone')?.invalid) {
-                <span class="text-[11px] text-rose-600 font-medium">Required</span>
-              }
-            </div>
-
-            <!-- Home Landmark (Full Width) -->
-            <div class="sm:col-span-2">
-              <label for="landmark" class="block text-xs font-semibold text-stone-700 mb-1">
-                Home Landmark *
-              </label>
-              <input
-                id="landmark"
-                type="text"
-                formControlName="landmark"
-                placeholder="e.g. Behind Central Mosque, Kubwa, Abuja"
-                class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
-              />
-              @if (registrationForm.get('landmark')?.touched && registrationForm.get('landmark')?.invalid) {
-                <span class="text-[11px] text-rose-600 font-medium">Required</span>
-              }
-            </div>
-
-            <!-- Birth Companion Name -->
-            <div>
-              <label for="companion_name" class="block text-xs font-semibold text-stone-700 mb-1">
-                Birth Companion Name *
-              </label>
-              <input
-                id="companion_name"
-                type="text"
-                formControlName="companion_name"
-                placeholder="e.g. Fatima Bello"
-                class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
-              />
-              @if (registrationForm.get('companion_name')?.touched && registrationForm.get('companion_name')?.invalid) {
-                <span class="text-[11px] text-rose-600 font-medium">Required</span>
-              }
-            </div>
-
-            <!-- Birth Companion Phone -->
-            <div>
-              <label for="companion_phone" class="block text-xs font-semibold text-stone-700 mb-1">
-                Birth Companion Phone *
-              </label>
-              <input
-                id="companion_phone"
-                type="tel"
-                formControlName="companion_phone"
-                placeholder="e.g. 0809 333 4444"
-                class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
-              />
-              @if (registrationForm.get('companion_phone')?.touched && registrationForm.get('companion_phone')?.invalid) {
-                <span class="text-[11px] text-rose-600 font-medium">Required</span>
-              }
-            </div>
-
-            <!-- Family Contact Phone (Full Width) -->
-            <div class="sm:col-span-2">
-              <label for="family_phone" class="block text-xs font-semibold text-stone-700 mb-1">
-                Family Contact Phone *
-              </label>
-              <input
-                id="family_phone"
-                type="tel"
-                formControlName="family_phone"
-                placeholder="e.g. 0809 555 6666"
-                class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
-              />
-              @if (registrationForm.get('family_phone')?.touched && registrationForm.get('family_phone')?.invalid) {
-                <span class="text-[11px] text-rose-600 font-medium">Required</span>
-              }
-            </div>
-
-          </div>
-
-          <!-- Submit Button -->
-          <div class="pt-2">
-            <button
-              type="submit"
-              [disabled]="isRegistering()"
-              class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#C2410C] hover:bg-[#9A3412] disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-semibold shadow-xs transition-all flex items-center justify-center gap-2 touch-target cursor-pointer"
-            >
-              @if (isRegistering()) {
-                <svg class="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <span>Registering...</span>
-              } @else {
-                <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">person_add</mat-icon>
-                <span>Register Patient</span>
-              }
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <!-- ========================================== -->
-      <!-- 2. Demo Actions Panel                      -->
-      <!-- ========================================== -->
-      <section class="lg:col-span-5 bg-white rounded-2xl border border-stone-200 p-6 sm:p-7 shadow-xs space-y-5">
-        
-        <div class="pb-4 border-b border-stone-100">
-          <h2 class="text-base font-bold text-stone-900">Demo Actions</h2>
-        </div>
-
-        <!-- Patient Phone Input -->
+      <div class="flex items-center justify-between pb-4 border-b border-stone-100">
         <div>
-          <label for="demoPhoneInput" class="block text-xs font-semibold text-stone-700 mb-1">
-            Patient Phone Number *
-          </label>
-          <input
-            id="demoPhoneInput"
-            type="tel"
-            [ngModel]="demoPhone()"
-            (ngModelChange)="demoPhone.set($event)"
-            placeholder="e.g. 0803 123 4567"
-            class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 font-mono focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
-          />
+          <h2 class="text-base font-bold text-stone-900">Patient Registration</h2>
+          <p class="text-xs text-stone-500 mt-0.5">Register expectant mothers for automated checkups & emergency response</p>
         </div>
-
-        <!-- Action Buttons -->
-        <div class="space-y-3 pt-1">
-          
-          <!-- Trigger Daily Checkup -->
+        @if (registrationForm.dirty) {
           <button
             type="button"
-            (click)="onTriggerDailyCheckup()"
-            [disabled]="isTriggeringCheckup() || !demoPhone()"
-            class="w-full py-2.5 px-4 rounded-xl bg-stone-900 hover:bg-stone-800 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-semibold transition-all flex items-center justify-center gap-2 touch-target cursor-pointer"
+            (click)="clearForm()"
+            class="text-xs text-stone-400 hover:text-stone-700 transition-colors cursor-pointer"
           >
-            @if (isTriggeringCheckup()) {
-              <svg class="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              <span>Dispatching Checkup...</span>
-            } @else {
-              <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">send</mat-icon>
-              <span>Trigger Daily Checkup</span>
-            }
+            Clear
           </button>
-
-          <!-- Trigger Week-36 Companion Alert -->
-          <button
-            type="button"
-            (click)="onTriggerWeek36Alert()"
-            [disabled]="isTriggeringWeek36() || !demoPhone()"
-            class="w-full py-2.5 px-4 rounded-xl bg-[#C2410C] hover:bg-[#9A3412] disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-semibold transition-all flex items-center justify-center gap-2 touch-target cursor-pointer"
-          >
-            @if (isTriggeringWeek36()) {
-              <svg class="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              <span>Sending Week-36 Alert...</span>
-            } @else {
-              <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">notification_important</mat-icon>
-              <span>Trigger Week-36 Companion Alert</span>
-            }
-          </button>
-
-        </div>
-
-        <!-- Inline Visual Feedback -->
-        @if (demoAlert(); as alert) {
-          <div
-            class="p-3.5 rounded-xl border flex items-start gap-3 transition-all"
-            [class]="alert.type === 'success' ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'"
-          >
-            <mat-icon class="shrink-0 mt-0.5 !text-[18px] !w-[18px] !h-[18px]" [class]="alert.type === 'success' ? 'text-emerald-600' : 'text-rose-600'">
-              {{ alert.type === 'success' ? 'check_circle' : 'error' }}
-            </mat-icon>
-            <div class="flex-1 text-xs leading-normal">
-              <p class="font-semibold">{{ alert.message }}</p>
-              @if (alert.details?.sessionStatus) {
-                <div class="mt-1 text-[11px] font-mono opacity-80">
-                  Status: {{ alert.details?.sessionStatus }}
-                </div>
-              }
-            </div>
-            <button
-              type="button"
-              (click)="demoAlert.set(null)"
-              class="text-stone-400 hover:text-stone-600"
-            >
-              <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">close</mat-icon>
-            </button>
-          </div>
         }
+      </div>
 
-      </section>
+      <!-- Inline Visual Feedback -->
+      @if (registrationAlert(); as alert) {
+        <div
+          class="mt-4 p-3.5 rounded-xl border flex items-start gap-3 transition-all"
+          [class]="alert.type === 'success' ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'"
+        >
+          <mat-icon class="shrink-0 mt-0.5 !text-[18px] !w-[18px] !h-[18px]" [class]="alert.type === 'success' ? 'text-emerald-600' : 'text-rose-600'">
+            {{ alert.type === 'success' ? 'check_circle' : 'error' }}
+          </mat-icon>
+          <div class="flex-1 text-xs leading-normal">
+            <p class="font-semibold">{{ alert.message }}</p>
+          </div>
+          <button
+            type="button"
+            (click)="registrationAlert.set(null)"
+            class="text-stone-400 hover:text-stone-600 cursor-pointer"
+          >
+            <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">close</mat-icon>
+          </button>
+        </div>
+      }
 
-    </div>
+      <form [formGroup]="registrationForm" (ngSubmit)="onRegisterPatient()" class="mt-5 space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <!-- Mother's Name -->
+          <div>
+            <label for="name" class="block text-xs font-semibold text-stone-700 mb-1">
+              Mother's Name *
+            </label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="e.g. Amina Bello"
+              class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
+            />
+            @if (registrationForm.get('name')?.touched && registrationForm.get('name')?.invalid) {
+              <span class="text-[11px] text-rose-600 font-medium">Required</span>
+            }
+          </div>
+
+          <!-- Phone Number -->
+          <div>
+            <label for="phone" class="block text-xs font-semibold text-stone-700 mb-1">
+              Phone Number *
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              formControlName="phone"
+              placeholder="e.g. 0803 123 4567"
+              class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
+            />
+            @if (registrationForm.get('phone')?.touched && registrationForm.get('phone')?.invalid) {
+              <span class="text-[11px] text-rose-600 font-medium">Required</span>
+            }
+          </div>
+
+          <!-- Weeks Pregnant -->
+          <div>
+            <label for="weeks_pregnant" class="block text-xs font-semibold text-stone-700 mb-1">
+              Weeks Pregnant *
+            </label>
+            <input
+              id="weeks_pregnant"
+              type="number"
+              min="1"
+              max="42"
+              formControlName="weeks_pregnant"
+              placeholder="e.g. 34"
+              class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
+            />
+            @if (registrationForm.get('weeks_pregnant')?.touched && registrationForm.get('weeks_pregnant')?.invalid) {
+              <span class="text-[11px] text-rose-600 font-medium">1 - 42</span>
+            }
+          </div>
+
+          <!-- Antenatal Ward Phone -->
+          <div>
+            <label for="ward_phone" class="block text-xs font-semibold text-stone-700 mb-1">
+              Antenatal Ward Phone *
+            </label>
+            <input
+              id="ward_phone"
+              type="tel"
+              formControlName="ward_phone"
+              placeholder="e.g. 0809 111 2222"
+              class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
+            />
+            @if (registrationForm.get('ward_phone')?.touched && registrationForm.get('ward_phone')?.invalid) {
+              <span class="text-[11px] text-rose-600 font-medium">Required</span>
+            }
+          </div>
+
+          <!-- Home Landmark (Full Width) -->
+          <div class="sm:col-span-2">
+            <label for="landmark" class="block text-xs font-semibold text-stone-700 mb-1">
+              Home Landmark *
+            </label>
+            <input
+              id="landmark"
+              type="text"
+              formControlName="landmark"
+              placeholder="e.g. Behind Central Mosque, Kubwa, Abuja"
+              class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
+            />
+            @if (registrationForm.get('landmark')?.touched && registrationForm.get('landmark')?.invalid) {
+              <span class="text-[11px] text-rose-600 font-medium">Required</span>
+            }
+          </div>
+
+          <!-- Birth Companion Name -->
+          <div>
+            <label for="companion_name" class="block text-xs font-semibold text-stone-700 mb-1">
+              Birth Companion Name *
+            </label>
+            <input
+              id="companion_name"
+              type="text"
+              formControlName="companion_name"
+              placeholder="e.g. Fatima Bello"
+              class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
+            />
+            @if (registrationForm.get('companion_name')?.touched && registrationForm.get('companion_name')?.invalid) {
+              <span class="text-[11px] text-rose-600 font-medium">Required</span>
+            }
+          </div>
+
+          <!-- Birth Companion Phone -->
+          <div>
+            <label for="companion_phone" class="block text-xs font-semibold text-stone-700 mb-1">
+              Birth Companion Phone *
+            </label>
+            <input
+              id="companion_phone"
+              type="tel"
+              formControlName="companion_phone"
+              placeholder="e.g. 0809 333 4444"
+              class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
+            />
+            @if (registrationForm.get('companion_phone')?.touched && registrationForm.get('companion_phone')?.invalid) {
+              <span class="text-[11px] text-rose-600 font-medium">Required</span>
+            }
+          </div>
+
+          <!-- Family Contact Phone (Full Width) -->
+          <div class="sm:col-span-2">
+            <label for="family_phone" class="block text-xs font-semibold text-stone-700 mb-1">
+              Family Contact Phone *
+            </label>
+            <input
+              id="family_phone"
+              type="tel"
+              formControlName="family_phone"
+              placeholder="e.g. 0809 555 6666"
+              class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent transition-all touch-target"
+            />
+            @if (registrationForm.get('family_phone')?.touched && registrationForm.get('family_phone')?.invalid) {
+              <span class="text-[11px] text-rose-600 font-medium">Required</span>
+            }
+          </div>
+
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-2">
+          <button
+            type="submit"
+            [disabled]="isRegistering()"
+            class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#C2410C] hover:bg-[#9A3412] disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-semibold shadow-xs transition-all flex items-center justify-center gap-2 touch-target cursor-pointer"
+          >
+            @if (isRegistering()) {
+              <svg class="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>Registering...</span>
+            } @else {
+              <mat-icon class="!text-[16px] !w-[16px] !h-[16px]">person_add</mat-icon>
+              <span>Register Patient</span>
+            }
+          </button>
+        </div>
+      </form>
+    </section>
   </main>
-
-  <!-- Clean Minimal Footer -->
-  <footer class="border-t border-stone-200/80 bg-stone-100/60 py-4 text-xs text-stone-500 mt-auto">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-      <span>Telemama</span>
-      <span>Maternal Health Monitoring</span>
-    </div>
-  </footer>
 
 </div>
